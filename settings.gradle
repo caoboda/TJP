@@ -1,0 +1,8 @@
+println "settings.gradle start"
+rootProject.name = "TJP"
+include ':app'
+include ':dssdk:jdsdk'
+include ':dssdk:tbsdk'
+include ':dssdk:pddsdk'
+include ':webviewlib'
+println "settings.gradle end"

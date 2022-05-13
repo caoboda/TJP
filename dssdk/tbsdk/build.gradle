@@ -1,0 +1,63 @@
+println "tbsdk_start： $name"
+apply plugin: 'com.android.library'
+
+android {
+    //（更高的编译器版本，向低版本兼容的能力是逐步增强的，建议及时跟进）
+    buildToolsVersion '30.0.3'
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+    }
+
+
+    buildTypes {
+        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDir(['libs'])
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+    //替代下方的所有的.aar和.jar的引入,而下面的api引入方式主公程引入失败，导不了包
+    api fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    api 'com.alibaba:fastjson:1.2.41@jar'
+  /*  //阿里百川
+    //登陆
+    api(name:'alibabauth_core-2.0.0.12', ext:'aar')
+    api(name:'alibabauth_ui-2.0.0.12', ext:'aar')
+    api(name:'alibabauth_ext-2.0.0.12', ext:'aar')
+    //安全组件
+    api(name:'securitybodyaar3-5.0.0.20', ext:'aar')
+    api(name:'securityguardaar3-5.0.0.20', ext:'aar')
+    api(name:'sgmiddletieraar3-5.0.0.20', ext:'aar')
+    api(name:'nocaptchaaar3-5.0.0.20', ext:'aar')
+    //applink
+    api(name:'alibc_link_partner-4.1.27', ext:'aar')
+    api(name:'miscaar3-5.5.9-preInstall-misc', ext:'aar')
+    // 电商基础组件
+    api(name:'AlibcTradeCommon-4.0.0.27', ext:'aar')
+    api(name:'AlibcTradeBiz-4.0.0.27', ext:'aar')
+    api(name:'nb_trade-4.0.0.27', ext:'aar')
+    //ut
+    api files('libs/utdid4all-1.1.5.3_proguard.jar')
+    api files('libs/app-monitor-sdk-2.6.4.11_for_bc.jar')
+    //Mtop
+    api files('libs/mtopsdk_allinone_open-3.1.2.5.jar')*/
+}
+
+println "tbsdk_end： $name"

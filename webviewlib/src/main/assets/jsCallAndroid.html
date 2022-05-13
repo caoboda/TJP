@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+<head>
+  <p>1、Js调的Android方式1</p>
+  <script>
+   function callAndroid(){
+       // 由于对象映射，所以调用jsObj对象等于调用Android映射的对象
+       jsObj.test("我是js传到android的参数");
+  }
+  </script>
+
+
+
+    <p>2、Js调的Android方式2</p>
+    <p2>约定的url协议为：js://webview?arg1=111&arg2=222 </p2>
+    <script>
+      function callAndroid2(){
+         document.location="js://webview?arg1=111&arg2=222";
+       }
+   </script>
+
+
+    <p>3、Js调的Android方式3</p>
+    <p2>约定的url协议为：js://webview?arg1=3333&arg2=4444</p2>
+    <script>
+      function callAndroid3(){
+       var result=prompt("js://webview?arg1=3333&arg2=4444");
+     //   alert("js弹出了 " + result);
+       }
+   </script>
+
+</head>
+<body>
+ <br><br/>
+ <button type="button" id="button1" onclick="callAndroid()">Js call Android 方式1</button>
+ <br><br/>
+ <button type="button" id="button2" onclick="callAndroid2()">Js call Android 方式2</button>
+ <br><br/>
+ <button type="button" id="button3" onclick="callAndroid3()">Js call Android 方式3</button>
+
+</body>
+</html>
+
+
