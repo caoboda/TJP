@@ -10,6 +10,15 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- ：配置抖音的软件包可见性
+          Android 11 为了加强了隐私保护策略，引入了很多变更和限制，其中软件包可见性 变更，将会导致第三方应用通过抖音开放平台的 SDK 无法正常拉起抖音，从而无法使用开放平台的全部功能，包括但不限于分享消息到抖音、通过抖音进行账号登陆等功能。
+          特别需要注意的是，Android11 的该变更只会影响到升级<strong>targetSdkVersion=30</strong>的应用，未升级的应用暂不受影响。-->
+    <queries>
+        <!--允许查询抖音和抖音极速版的软件包信息-->
+        <package android:name="com.ss.android.ugc.aweme" />
+        <package android:name="com.ss.android.ugc.aweme.lite" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

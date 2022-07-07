@@ -1,8 +1,8 @@
 package com.ajl.tjp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var turnJdBtn : Button
     private lateinit var turnTbBtn : Button
     private lateinit var turnPddBtn : Button
+    private lateinit var turnDouYinBtn : Button
     private lateinit var turnWeb : Button
     private lateinit var turnInterActiveJsBtn : Button
     private lateinit var jsCallAndroidBtn : Button
@@ -41,8 +42,8 @@ class MainActivity : AppCompatActivity() {
   //  private val jdurl="https://u.jd.com/Zw0123O"
     private val jdurl="https://u.jd.com/ZM0bgTy"
     private val tburl="https://detail.tmall.com/item.htm?id=607595719976&ali_trackid=2:mm_10011550_0_0:1650536026_070_338022869&union_lens=lensId:OPT@1650536020@b6eb4c50-b33a-45d1-8571-eadb74ac328c_607595719976@1;recoveryid:201_33.5.39.50_785894_1650535977053;prepvid:201_33.5.39.50_785894_1650535977053&spm=a3126.8759693/d.zhtj.31&pvid=b6eb4c50-b33a-45d1-8571-eadb74ac328c&scm=1007.15880.171602.0&bxsign=tbkSDOx6al/2JVbTt/uKAyTjz9TyCKauHvdz16hVBQJTmP9uI%20AgummmVOIgTOgJ4s1rhpuzptX2VoCP5SiErpnEgfaQmjAqLEZP%20qF%20yF6Zk0="
-    private val pddurl="https://p.pinduoduo.com/c5016Kau"
-    private val handler= Handler()
+    private val pddurl="https://p.pinduoduo.com/yG6IlO09"
+    private val douyinurl="https://v.douyin.com/YTQXjDE/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +51,33 @@ class MainActivity : AppCompatActivity() {
         turnJdBtn=findViewById(R.id.turnJdBtn)
         turnTbBtn=findViewById(R.id.turnTbBtn)
         turnPddBtn=findViewById(R.id.turnPddBtn)
+        turnDouYinBtn=findViewById(R.id.turnDouYinBtn)
         turnWeb=findViewById(R.id.turnWeb)
         turnInterActiveJsBtn=findViewById(R.id.turnInterActiveJsBtn)
         jsCallAndroidBtn=findViewById(R.id.jsCallAndroidBtn)
         toJdApp()
         toTbApp()
         toPddApp()
+        toDouYin()
         toWeb()
         androidToJs()
         jsCallAndroid()
     }
+
+    private fun toDouYin() {
+        turnDouYinBtn.setOnClickListener {
+            val b = checkAppInstalled(MainActivity@this, "com.ss.android.ugc.aweme")
+            if (b) {
+                val intent = Intent()
+                intent.data = Uri.parse(douyinurl)
+                startActivity(intent)
+            } else {
+                Toast.makeText(MainActivity@this, "请安装抖音", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
 
     private fun androidToJs() {
         turnInterActiveJsBtn.setOnClickListener {
@@ -131,15 +149,19 @@ class MainActivity : AppCompatActivity() {
 
 
     private var mOpenAppAction = OpenAppAction { status ->
-        if (status == OpenAppAction.OpenAppAction_start) { //开始状态未必一定执行，
-            //  dialogShow()
-        }else if (status == OpenAppAction.OpenAppAction_result_NoJDAPP) { //沒有安裝京東app
-            //  dialogShow()
-            //表示的就是MainActivity这个类对象本来，这种写法一般用在内部类里，因为在外部类中直接可以用关键字this表示本类，而内部类中直接写this的话表示的是内部类本身，想表示外部类的话就得加上外部类的类名.this。
-            Toast.makeText(this@MainActivity,"請先安裝京東app", Toast.LENGTH_LONG).show()
-        } else {
-            mKelperTask = null
-            // dialogDiss()
+        when (status) {
+            OpenAppAction.OpenAppAction_start -> { //开始状态未必一定执行，
+                //  dialogShow()
+            }
+            OpenAppAction.OpenAppAction_result_NoJDAPP -> { //沒有安裝京東app
+                //  dialogShow()
+                //表示的就是MainActivity这个类对象本来，这种写法一般用在内部类里，因为在外部类中直接可以用关键字this表示本类，而内部类中直接写this的话表示的是内部类本身，想表示外部类的话就得加上外部类的类名.this。
+                Toast.makeText(this@MainActivity,"請先安裝京東app", Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                mKelperTask = null
+                // dialogDiss()
+            }
         }
     }
 
@@ -238,6 +260,8 @@ class MainActivity : AppCompatActivity() {
                 }
             })
     }
+
+
 
 
 }
