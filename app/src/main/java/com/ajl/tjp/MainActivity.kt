@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var turnTbBtn : Button
     private lateinit var turnPddBtn : Button
     private lateinit var turnDouYinBtn : Button
+    private lateinit var turnWeiPinHuiBtn : Button
     private lateinit var turnWeb : Button
     private lateinit var turnInterActiveJsBtn : Button
     private lateinit var jsCallAndroidBtn : Button
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private val tburl="https://detail.tmall.com/item.htm?id=607595719976&ali_trackid=2:mm_10011550_0_0:1650536026_070_338022869&union_lens=lensId:OPT@1650536020@b6eb4c50-b33a-45d1-8571-eadb74ac328c_607595719976@1;recoveryid:201_33.5.39.50_785894_1650535977053;prepvid:201_33.5.39.50_785894_1650535977053&spm=a3126.8759693/d.zhtj.31&pvid=b6eb4c50-b33a-45d1-8571-eadb74ac328c&scm=1007.15880.171602.0&bxsign=tbkSDOx6al/2JVbTt/uKAyTjz9TyCKauHvdz16hVBQJTmP9uI%20AgummmVOIgTOgJ4s1rhpuzptX2VoCP5SiErpnEgfaQmjAqLEZP%20qF%20yF6Zk0="
     private val pddurl="https://p.pinduoduo.com/yG6IlO09"
     private val douyinurl="https://v.douyin.com/YTQXjDE/"
+    private val weipinhuiurl="https://t.vip.com/tP2qJyK4GY8?chanTag=wpid&aq=1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         turnTbBtn=findViewById(R.id.turnTbBtn)
         turnPddBtn=findViewById(R.id.turnPddBtn)
         turnDouYinBtn=findViewById(R.id.turnDouYinBtn)
+        turnWeiPinHuiBtn=findViewById(R.id.turnWeiPinHuiBtn)
         turnWeb=findViewById(R.id.turnWeb)
         turnInterActiveJsBtn=findViewById(R.id.turnInterActiveJsBtn)
         jsCallAndroidBtn=findViewById(R.id.jsCallAndroidBtn)
@@ -59,9 +62,23 @@ class MainActivity : AppCompatActivity() {
         toTbApp()
         toPddApp()
         toDouYin()
+        toWeiPinHui()
         toWeb()
         androidToJs()
         jsCallAndroid()
+    }
+
+    private fun toWeiPinHui() {
+        turnWeiPinHuiBtn.setOnClickListener {
+            val b = checkAppInstalled(MainActivity@this, "com.achievo.vipshop")
+            if (b) {
+                val intent = Intent()
+                intent.data = Uri.parse(weipinhuiurl)
+                startActivity(intent)
+            } else {
+                Toast.makeText(MainActivity@this, "请安装唯品会App", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun toDouYin() {

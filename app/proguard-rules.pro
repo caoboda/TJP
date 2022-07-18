@@ -21,3 +21,8 @@
 #-renamesourcefileattribute SourceFile
 -keep class com.kepler.**{*;}
 -dontwarn com.kepler.**
+
+#ViewBinding 使用反射调用 inflate 实现基类，需要 keep ViewBinging
+-keep class * implements androidx.viewbinding.ViewBinding {
+    *;
+}
