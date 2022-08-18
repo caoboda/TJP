@@ -17,6 +17,12 @@
         <!--允许查询抖音和抖音极速版的软件包信息-->
         <package android:name="com.ss.android.ugc.aweme" />
         <package android:name="com.ss.android.ugc.aweme.lite" />
+        <!-- 拼多多 -->
+        <package android:name="com.xunmeng.pinduoduo" />
+        <!-- 淘宝-->
+        <package android:name="com.taobao.taobao"/>
+        <!-- 京东-->
+        <package android:name="com.jingdong.app.mall"/>
     </queries>
 
     <application

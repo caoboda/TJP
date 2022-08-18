@@ -157,10 +157,15 @@ class MainActivity : AppCompatActivity() {
     private fun toPddApp() {
         turnPddBtn.apply {
             setOnClickListener {
-                JinbaoUtil.openPdd(pddurl,"ddtzopen://test")
+                val b = checkAppInstalled(context, "com.xunmeng.pinduoduo")
+                if (b) {
+                    //url,backUrl
+                    JinbaoUtil.openPdd(pddurl, "ddtzopen://test")
+                } else {
+                    Toast.makeText(context, "请安装拼多多", Toast.LENGTH_SHORT).show()
+                }
             }
         }
-
     }
 
 
