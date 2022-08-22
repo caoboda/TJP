@@ -23,6 +23,8 @@
         <package android:name="com.taobao.taobao"/>
         <!-- 京东-->
         <package android:name="com.jingdong.app.mall"/>
+        <!-- 唯品会-->
+        <package android:name="com.achievo.vipshop"/>
     </queries>
 
     <application
